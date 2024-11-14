@@ -24,8 +24,21 @@ python main_sacl.py --no-single_s --alpha 0.125 --rho 0.9 --s_init_t 2 --temp 0.
 \
 ################
 # im1k
+python main_sacl.py --single_s --alpha 0.125 --rho 0.99 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 100 --random_state 44
+python main_sacl.py --single_s --alpha 0.125 --rho 0.99 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 100 --random_state 12
+python main_sacl.py --single_s --alpha 0.125 --rho 0.99 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 100 --random_state 34
+
+python main_sacl.py --no-single_s --alpha 0.125 --rho 0.9 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 100 --random_state 44
+python main_sacl.py --no-single_s --alpha 0.125 --rho 0.9 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 100 --random_state 12
+python main_sacl.py --no-single_s --alpha 0.125 --rho 0.9 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 100 --random_state 34
+
 python main_sacl.py --single_s --alpha 0.125 --rho 0.99 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 400 --random_state 44
+python main_sacl.py --single_s --alpha 0.125 --rho 0.99 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 400 --random_state 12
+python main_sacl.py --single_s --alpha 0.125 --rho 0.99 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 400 --random_state 34
+
 python main_sacl.py --no-single_s --alpha 0.125 --rho 0.9 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 400 --random_state 44
+python main_sacl.py --no-single_s --alpha 0.125 --rho 0.9 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 400 --random_state 12
+python main_sacl.py --no-single_s --alpha 0.125 --rho 0.9 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 400 --random_state 34
 
 
 #############################
