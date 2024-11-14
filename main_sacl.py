@@ -275,6 +275,14 @@ def main_train():
     save_checkpoint(model, optimizer, criterion, scaler, epoch, args, filename="/checkpoint_last.pth")
     train_df.to_csv(args.savedir + "/train_df.csv")
 
+    ##############
+    print("Total time:", train_df["epoch_time"].sum())
+    # https://discuss.pytorch.org/t/determine-peak-memory-requirement/79637
+    stats = torch.cuda.memory_stats()
+    peak_bytes_requirement = stats["allocated_bytes.all.peak"]
+    print(f"Peak memory requirement: {peak_bytes_requirement / 1024 ** 3:.2f} GB")
+
+
 
 def get_main_parser():
     parser = argparse.ArgumentParser(description='Pretrain')
