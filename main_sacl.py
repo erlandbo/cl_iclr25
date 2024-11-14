@@ -172,7 +172,19 @@ def main_train():
     criterion.cuda()
 
     if args.optimizer == "sgd":
-        optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+        if args.dataset == "imagenet": # https://github.com/mingkai-zheng/ReSSL/blob/main/ressl.py
+            param_dict = {}
+            for k, v in model.named_parameters():
+                param_dict[k] = v
+
+            bn_params = [v for n, v in param_dict.items() if ('bn' in n or 'bias' in n)]
+            rest_params = [v for n, v in param_dict.items() if not ('bn' in n or 'bias' in n)]
+
+            optimizer = torch.optim.SGD([{'params': bn_params, 'weight_decay': 0,},
+                                    {'params': rest_params, 'weight_decay': 1e-4}],
+                                    lr=args.lr, momentum=0.9, weight_decay=1e-4)
+        else:
+            optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     elif args.optimizer == "adam":
         optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     elif args.optimizer == "adamw":

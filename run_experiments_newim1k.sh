@@ -1,0 +1,2 @@
+python main_sacl.py --base_lr 0.05 --optimizer sgd --warmup_epochs 5 --lr_scale linear --no-single_s --alpha 0.125 --rho 0.9 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 100 --random_state 44
+python main_sacl.py --base_lr 0.05 --optimizer sgd --warmup_epochs 5 --lr_scale linear --method fullbatch --no-single_s --alpha 0.125 --rho 0.9 --s_init_t 2 --temp 0.5 --data_path ~/Datasets/imagenet/ --dataset imagenet --epochs 100 --random_state 44
