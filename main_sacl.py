@@ -19,6 +19,8 @@ import json
 from lars_optim import LARS
 
 from criterions.cl_loss import SogCLR, InfoNCELoss
+from criterions.isogclr import SogCLR_Loss, SogCLR_DRO_Loss 
+
 
 def adjust_learning_rate(step, len_loader, optimizer, args):
     tot_steps = args.epochs * len_loader
@@ -166,7 +168,9 @@ def main_train():
     elif args.method == "simclr":
         criterion = InfoNCELoss(metric=args.metric, temp=args.temp)
     elif args.method == "sogclr":
-        criterion = SogCLR(T=args.temp, N=args.N)
+        criterion = SogCLR_Loss(N=args.N, temperature=args.temp) #SogCLR(T=args.temp, N=args.N)
+    elif args.method == "isogclr":
+        criterion = SogCLR_DRO_Loss(N=args.N, bsz=args.batch_size)
     else:
         raise ValueError("Invalid method criterion", args.method)
 
@@ -312,7 +316,7 @@ def get_main_parser():
     parser.add_argument('--num_workers', default=20, type=int)
     
     parser.add_argument('--metric', default="exponential", type=str, choices=["exponential", "cauchy", "cosine"])
-    parser.add_argument('--method', default="scl", type=str, choices=["scl", "fullbatch", "batchmix", "simclr", "sogclr"])
+    parser.add_argument('--method', default="scl", type=str, choices=["scl", "fullbatch", "batchmix", "simclr", "sogclr", "isogclr"])
     parser.add_argument('--rho', default=0.9, type=float)
     parser.add_argument('--alpha', default=0.125, type=float)
     parser.add_argument('--s_init_t', default=2.0, type=float)
