@@ -152,7 +152,7 @@ def main():
     parser.add_argument('--classifier', default="knn", type=str,choices=["knn", "logreg"])
     parser.add_argument('--batch_size', default=512, type=int)
     parser.add_argument('--num_workers', default=20, type=int)
-    parser.add_argument('--dataset', default='imagenet', type=str, choices=["imagenet", "imagenet100", "imagenette"])
+    parser.add_argument('--dataset', default='imagenet', type=str, choices=["imagenet", "imagenet100", "imagenette", "cifar10","cifar100"])
     parser.add_argument('--feature_type', default='backbone_features', type=str, choices=["backbone_features", "output_features"])
     parser.add_argument('--val_split', default=0.0, type=float)
     parser.add_argument('--model_checkpoint_path', required=True)

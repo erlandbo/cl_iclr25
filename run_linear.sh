@@ -13,3 +13,30 @@ python eval_linear.py --optimizer sgd --lr 30.0 --weight_decay 0.0 --epochs 90 -
 python eval_linear.py --optimizer sgd --lr 30.0 --weight_decay 0.0 --epochs 90 --dataset cifar100 --model_checkpoint_path logs/2024_11_16_01_33_00_scl_single_sFalse_exponential_cifar100_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
 python eval_linear.py --optimizer sgd --lr 30.0 --weight_decay 0.0 --epochs 90 --dataset cifar100 --model_checkpoint_path logs/2024_11_16_04_44_06_scl_single_sFalse_exponential_cifar100_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 34
 python eval_linear.py --optimizer sgd --lr 30.0 --weight_decay 0.0 --epochs 90 --dataset cifar100 --model_checkpoint_path logs/2024_11_16_07_55_10_scl_single_sFalse_exponential_cifar100_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 56
+
+
+python eval_sklearn.py --data_path ./data/ --dataset imagenette --model_checkpoint_path logs/2024_11_16_11_07_47_scl_single_sTrue_exponential_imagenette_batch128_epochs800_resnet18_lr0_848528137423857_temp0_5_alpha0_125_rho0_99_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
+python eval_sklearn.py --data_path ./data/ --dataset imagenette --model_checkpoint_path logs/2024_11_16_14_39_54_scl_single_sTrue_exponential_imagenette_batch128_epochs800_resnet18_lr0_848528137423857_temp0_5_alpha0_125_rho0_99_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 34
+python eval_sklearn.py --data_path ./data/ --dataset imagenette --model_checkpoint_path logs/2024_11_16_18_11_07_scl_single_sFalse_exponential_imagenette_batch128_epochs800_resnet18_lr0_848528137423857_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 56
+python eval_sklearn.py --data_path ./data/ --dataset imagenette --model_checkpoint_path logs/2024_11_16_21_42_09_scl_single_sFalse_exponential_imagenette_batch128_epochs800_resnet18_lr0_848528137423857_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
+python eval_sklearn.py --data_path ./data/ --dataset imagenette --model_checkpoint_path logs/2024_11_17_01_12_58_scl_single_sFalse_exponential_imagenette_batch128_epochs800_resnet18_lr0_848528137423857_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 34
+#python eval_sklearn.py --data_path ./data/ --dataset imagenette --model_checkpoint_path logs/your-folder-name/checkpoint_last.pth --random_state 56
+
+
+
+# cifar10
+python eval_sklearn.py --data_path ./data/ --dataset cifar10 --model_checkpoint_path logs/2024_11_14_22_23_48_scl_single_sTrue_exponential_cifar10_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_99_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
+python eval_sklearn.py --data_path ./data/ --dataset cifar10 --model_checkpoint_path logs/2024_11_15_01_34_46_scl_single_sTrue_exponential_cifar10_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_99_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 34
+python eval_sklearn.py --data_path ./data/ --dataset cifar10 --model_checkpoint_path logs/2024_11_15_04_46_34_scl_single_sTrue_exponential_cifar10_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_99_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 56
+
+python eval_sklearn.py --data_path ./data/ --dataset cifar10 --model_checkpoint_path logs/2024_09_25_21_03_33_scl_single_sFalse_exponential_cifar10_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
+python eval_sklearn.py --data_path ./data/ --dataset cifar10 --model_checkpoint_path logs/2024_11_15_09_35_29_scl_single_sFalse_exponential_cifar10_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
+python eval_sklearn.py --data_path ./data/ --dataset cifar10 --model_checkpoint_path logs/2024_11_15_12_46_40_scl_single_sFalse_exponential_cifar10_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
+
+python eval_sklearn.py --data_path ./data/ --dataset cifar10 --model_checkpoint_path logs/2024_11_15_15_58_04_scl_single_sTrue_exponential_cifar100_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_99_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
+python eval_sklearn.py --data_path ./data/ --dataset cifar10 --model_checkpoint_path logs/2024_11_15_19_09_39_scl_single_sTrue_exponential_cifar100_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_99_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
+python eval_sklearn.py --data_path ./data/ --dataset cifar10 --model_checkpoint_path logs/2024_11_15_22_21_32_scl_single_sTrue_exponential_cifar100_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_99_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
+
+python eval_sklearn.py --data_path ./data/ --dataset cifar10 --model_checkpoint_path logs/2024_11_16_01_33_00_scl_single_sFalse_exponential_cifar100_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
+python eval_sklearn.py --data_path ./data/ --dataset cifar10 --model_checkpoint_path logs/2024_11_16_04_44_06_scl_single_sFalse_exponential_cifar100_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
+python eval_sklearn.py --data_path ./data/ --dataset cifar10 --model_checkpoint_path logs/2024_11_16_07_55_10_scl_single_sFalse_exponential_cifar100_batch128_epochs1000_resnet18_lr0_015_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192/checkpoint_last.pth --random_state 12
