@@ -18,6 +18,7 @@ import random
 import json
 from lars_optim import LARS
 
+from criterions.cl_loss import SogCLR, InfoNCELoss
 
 def adjust_learning_rate(step, len_loader, optimizer, args):
     tot_steps = args.epochs * len_loader
@@ -162,6 +163,10 @@ def main_train():
             single_s=args.single_s,
             temp=args.temp
         )
+    elif args.method == "simclr":
+        criterion = InfoNCELoss(metric=args.metric, temp=args.temp)
+    elif args.method == "sogclr":
+        criterion = SogCLR(T=args.temp, N=args.N)
     else:
         raise ValueError("Invalid method criterion", args.method)
 
@@ -172,19 +177,7 @@ def main_train():
     criterion.cuda()
 
     if args.optimizer == "sgd":
-        if args.dataset == "imagenet": # https://github.com/mingkai-zheng/ReSSL/blob/main/ressl.py
-            param_dict = {}
-            for k, v in model.named_parameters():
-                param_dict[k] = v
-
-            bn_params = [v for n, v in param_dict.items() if ('bn' in n or 'bias' in n)]
-            rest_params = [v for n, v in param_dict.items() if not ('bn' in n or 'bias' in n)]
-
-            optimizer = torch.optim.SGD([{'params': bn_params, 'weight_decay': 0,},
-                                    {'params': rest_params, 'weight_decay': 1e-4}],
-                                    lr=args.lr, momentum=0.9, weight_decay=1e-4)
-        else:
-            optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+        optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     elif args.optimizer == "adam":
         optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     elif args.optimizer == "adamw":
@@ -318,8 +311,8 @@ def get_main_parser():
     parser.add_argument('--warmup_epochs', default=10, type=int)
     parser.add_argument('--num_workers', default=20, type=int)
     
-    parser.add_argument('--metric', default="exponential", type=str, choices=["exponential", "cauchy"])
-    parser.add_argument('--method', default="scl", type=str, choices=["scl", "fullbatch", "batchmix"])
+    parser.add_argument('--metric', default="exponential", type=str, choices=["exponential", "cauchy", "cosine"])
+    parser.add_argument('--method', default="scl", type=str, choices=["scl", "fullbatch", "batchmix", "simclr", "sogclr"])
     parser.add_argument('--rho', default=0.9, type=float)
     parser.add_argument('--alpha', default=0.125, type=float)
     parser.add_argument('--s_init_t', default=2.0, type=float)
