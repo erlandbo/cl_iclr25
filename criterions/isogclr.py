@@ -58,7 +58,7 @@ class SogCLR_Loss(nn.Module):
 
 
 class SogCLR_DRO_Loss(nn.Module):
-    def __init__(self, N=15000000, gamma=0.8, tau_init=0.07, tau_min=0.05, tau_max=1.0, rho=0.8, bsz=256,
+    def __init__(self, N=15000000, gamma=0.8, tau_init=0.5, tau_min=0.05, tau_max=1.0, rho=0.8, bsz=128,
                     eta_init=0.001, eta_min=1e-4, beta_u=0.9, eta_sched='const', eta_exp_gamma=0.8):
         super(SogCLR_DRO_Loss, self).__init__()
         self.gamma = gamma

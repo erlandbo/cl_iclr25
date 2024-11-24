@@ -1,0 +1,32 @@
+im100 400ep
+saclr-1 matrix:  0.8214000007629395, 0.818399999332428 0.8292000001907348
+saclr-1 row: 0.8168000007629395 0.8156 0.8151999998092652
+
+im1k 100ep
+sacxlr-1 matrix: 0.64916   0.6475 65.14
+saclr-1 row: 0.6479800000286102 0.6483600000286103 0.6471
+
+saclr-all row: 0.659
+
+
+
+
+
+2024_11_15_09_46_07_scl_single_sTrue
+
+im100 400ep
+saclr-all matrix: 0.8249999996185303
+saclr-all row: 0.8218000001907348
+
+
+im1k 100ep bsz256:
+2024_11_17_06_45_51_scl_single_sFalse_exponential_imagenet_batch256_epochs100_resnet50_lr1_2_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192
+2024_11_17_07_46_25_fullbatch_single_sFalse_exponential_imagenet_batch256_epochs100_resnet50_lr1_2_temp0_5_alpha0_125_rho0_9_s_init_t2_0_outfeats8192
+
+saclr-all row:0.6674600000286103
+saclr-1 row: 0.6535000000190735
+simclr: 0.6577199999904633
+
+
+im1k 400ep:
+
