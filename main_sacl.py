@@ -15,11 +15,11 @@ import math
 import numpy as np
 import pandas as pd
 import random
+import torch.nn.functional as F
 import json
 from lars_optim import LARS
 
-from criterions.cl_loss import SogCLR, InfoNCELoss
-from criterions.isogclr import SogCLR_Loss, SogCLR_DRO_Loss 
+from criterions.isogclr import SogCLR_DRO_Loss, SogCLR_Loss, SupConLoss
 
 
 def adjust_learning_rate(step, len_loader, optimizer, args):
@@ -166,9 +166,9 @@ def main_train():
             temp=args.temp
         )
     elif args.method == "simclr":
-        criterion = InfoNCELoss(metric=args.metric, temp=args.temp)
+        criterion = SupConLoss(batch_size=args.batch_size, temperature=args.temp)
     elif args.method == "sogclr":
-        criterion = SogCLR_Loss(N=args.N, temperature=args.temp) #SogCLR(T=args.temp, N=args.N)
+        criterion = SogCLR_Loss(N=args.N, temperature=args.temp)
     elif args.method == "isogclr":
         criterion = SogCLR_DRO_Loss(N=args.N, bsz=args.batch_size)
     else:
@@ -238,7 +238,24 @@ def main_train():
 
             with torch.amp.autocast(device_type="cuda",enabled=not (args.dtype=="float32"), dtype=pdtype):
                 z, _ = model(x)
-                loss = criterion(z, idx)
+
+                if args.method in ["isogclr", "sogclr", "simclr"]:
+                    #encoder_out, raw_features = model(images)
+                    raw_features = z
+                    bsz = x1.shape[0]
+                    
+                    norm_features = F.normalize(raw_features, dim=1)
+                    f1, f2 = torch.split(norm_features, [bsz, bsz], dim=0)
+                    features = torch.cat([f1.unsqueeze(1), f2.unsqueeze(1)], dim=1)
+                    torch.cuda.empty_cache()
+                    if args.method == 'sogclr':
+                        loss = criterion(idx, f1, f2)
+                    elif args.method == 'isogclr':
+                        loss, avg_tau, eta_cur, grad_tau, b = criterion(idx, features, epoch, args.epochs)
+                    elif args.method == "simclr":
+                        loss = criterion(features)
+                else:
+                    loss = criterion(z, idx)
 
             if scaler is not None:
                 scaler.scale(loss).backward()
